@@ -1,0 +1,23 @@
+[
+    {"name": "01 docs", "url": "https://docs.google.com/"},
+    {"name": "02 new doc", "url": "https://docs.google.com/document/create"},
+    {"name": "03 sheets", "url": "https://sheets.google.com/"},
+    {"name": "04 new sheet", "url": "https://sheets.google.com/create"},
+    {"name": "05 google", "url": "https://www.google.com/"},
+    {"name": "06 codepen", "url": "http://codepen.com"},
+    {"name": "07 new codepen", "url": "http://codepen.com/pen/"},
+    {"name": "08 your work codepen", "url": "https://codepen.io/your-work/"},
+    {"name": "09 gmail", "url": "https://mail.google.com"},
+    {"name": "10 compose gmail", "url": "https://mail.google.com/mail/u/0/#inbox?compose=new"},
+    {"name": "11 github", "url": "https://github.com"},
+    {"name": "12 your repos github", "url": "https://github.com/nathanpuls?tab=repositories"},
+    {"name": "13 canvas", "url": "https://www.uttyler.edu/canvas/login/"},
+    {"name": "14 neuro canvas", "url": "https://uttyler.instructure.com/courses/39265/modules"},
+    {"name": "15 informatics canvas", "url": "https://uttyler.instructure.com/courses/38813/modules"},
+    {"name": "16 google calendar", "url": "https://calendar.google.com/calendar/u/0/r"},
+    {"name": "17 discord", "url": "https://discord.com/channels/@me"},
+    {"name": "18 outlook mail", "url": "https://outlook.office.com/mail/"},
+    {"name": "19 ai", "url": "https://chat.openai.com/"},
+    {"name": "20 chart", "url": "https://nursing-tool.bubbleapps.io/version-test/sa"},
+    {"name": "21 cerner", "url": "https://cernltca.cernerworks.com/Citrix/PRODweb/"}
+]
