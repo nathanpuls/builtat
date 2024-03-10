@@ -1,6 +1,7 @@
 
 * {
-    font-family: 'Urbanist', sans-serif;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.3rem;
 
 }
 brand {
@@ -8,6 +9,7 @@ brand {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  font-size: 'Outfit', sans-serif;
 }
 
 main {
@@ -34,6 +36,7 @@ color: black;
 
 img {
   margin-top: .15rem;
+  width: 1.7rem;
 }
 
 h1 {
