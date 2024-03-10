@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hallie Birth Calculator</title>
+  <link rel="stylesheet" href="css.css">
+  <style>
+    body {
+      text-align: center;
+      margin: 50px;
+    }
+
+    h1 {
+      color: #3498db;
+    }
+
+    #currentWeek {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+
+    #currentWeekValue {
+      font-weight: bold;
+      font-size: 30px;
+      /* Adjust the size as needed */
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Hallie Birth Calculator</h1>
+  <img src="https://cdn-icons-png.flaticon.com/512/7890/7890168.png" width=100px />
+  <p>Hallie is due <strong>July 6, 2024</strong></p>
+  <p id="currentWeek">Bekah is <span id="currentWeekValue">Calculating...</span> weeks pregnant</p>
+
+  <script>
+    // Function to calculate the current pregnancy week
+    function calculateCurrentWeek(dueDate) {
+      const currentDate = new Date();
+      const millisecondsPerWeek = 7 * 24 * 60 * 60 * 1000;
+      const weeksRemaining = Math.floor((dueDate - currentDate) / millisecondsPerWeek);
+      return Math.max(0, 40 - weeksRemaining);
+    }
+    // Function to update the current week on the screen
+    function updateCurrentWeek() {
+      const dueDate = new Date('July 6, 2024');
+      const currentWeek = calculateCurrentWeek(dueDate);
+      document.getElementById('currentWeekValue').textContent = currentWeek;
+    }
+    // Update the current week on page load
+    updateCurrentWeek();
+    // Update the current week every 1 day (86400000 milliseconds)
+    setInterval(updateCurrentWeek, 86400000);
+  </script>
+
+</body>
+
+</html>
