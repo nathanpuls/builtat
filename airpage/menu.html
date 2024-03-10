@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airpage</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+
+    <h1>Airpage</h1>
+    <p>Projects from Airtable</p>
+
+    <ul id="linkList"></ul>
+
+    <script>
+        // Replace these values with your Airtable API token and base ID
+        const apiToken = 'patNEiBRVjhjL4jVd.d2029212f96a518ab96e0ad1a1e50c728f0e0b5ae670c4fa32d23db2e95ce52b';
+        const baseId = 'appClfneYklLXpyB8';
+        const tableName = 'builtatprojects';
+
+        // Fetch data from Airtable
+        fetch(`https://api.airtable.com/v0/${baseId}/${tableName}`, {
+            headers: {
+                'Authorization': `Bearer ${apiToken}`,
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Extract links and names from the Airtable response
+            const linkData = data.records.map(record => ({
+                project: record.fields.project,
+                html: record.fields.html // Assuming 'name' is the field name in Airtable
+            }));
+
+            // Display links on the page
+            displayLinks(linkData);
+        })
+        .catch(error => console.error('Error fetching data from Airtable:', error));
+
+        function displayLinks(linkData) {
+            const linkList = document.getElementById('linkList');
+
+            // Create list items for each link
+            linkData.forEach(data => {
+                const listItem = document.createElement('li');
+                const linkElement = document.createElement('a');
+                
+                // You can customize the link display as needed
+                linkElement.href = `/airpage/?project=${data.project}`;
+                linkElement.textContent = data.project; // Use the name field as link text
+
+                listItem.appendChild(linkElement);
+                linkList.appendChild(listItem);
+            });
+        }
+    </script>
+
+</body>
+</html>
