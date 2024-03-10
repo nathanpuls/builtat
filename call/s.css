@@ -5,6 +5,7 @@
 
 * {
   font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
 }
 
 #contactList {
@@ -14,10 +15,13 @@
 }
 #row {
   display: flex;
+  
+  
+  margin-bottom: 20px;
 }
 
 #filterInput {
-  margin-bottom: 10px;
+  
   outline: none;
     border: 1px solid #ccc;
 }
@@ -27,9 +31,10 @@
 }
 button {
   margin-left: 5px;
-  height: 33px;
+  /* height: 33px; */
 }
 input {
   width: 180px !important;
-  margin-bottom: 10px;
+  
+  
 }
