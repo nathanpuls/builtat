@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Page</title>
+</head>
+<body>
+    <div id="projectContent"></div>
+
+    <script>
+        // Get the project parameter from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const project = urlParams.get('project');
+        document.title = project;
+
+        // Airtable API configuration
+        const apiToken = 'patNEiBRVjhjL4jVd.d2029212f96a518ab96e0ad1a1e50c728f0e0b5ae670c4fa32d23db2e95ce52b';
+        const baseId = 'appClfneYklLXpyB8';
+        const tableName = 'builtatprojects';
+
+        // URL to fetch data from Airtable
+        const apiUrl = `https://api.airtable.com/v0/${baseId}/${tableName}?filterByFormula={project}='${project}'`;
+
+        // Fetch data from Airtable
+        fetch(apiUrl, {
+            headers: {
+                'Authorization': `Bearer ${apiToken}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Extract HTML content from the response
+            const htmlContent = data.records[0].fields.html;
+
+            // Display HTML content on the page
+            document.getElementById('projectContent').innerHTML = htmlContent;
+        })
+        .catch(error => {
+            console.error('Error fetching data from Airtable:', error);
+        });
+    </script>
+</body>
+</html>

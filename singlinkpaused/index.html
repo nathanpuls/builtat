@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link List</title>
+    <style>
+        /* Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #linkList {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .linkItem {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Link List</h1>
+
+    <!-- Form to input links -->
+    <form id="linkForm">
+        <label for="linkInput">Enter links (one per line):</label>
+        <textarea id="linkInput" placeholder="https://example1.com
+https://example2.com
+https://example3.com"></textarea>
+        <button type="button" onclick="addLinks()">Add Links</button>
+    </form>
+
+    <!-- Display the list of links -->
+    <ul id="linkList"></ul>
+
+    <script>
+        var linkCounter = 1;
+
+        // Check for URL parameters on page load
+        document.addEventListener("DOMContentLoaded", function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var linksParam = urlParams.get('links');
+
+            if (linksParam) {
+                var linksArray = linksParam.split(',');
+                for (var i = 0; i < linksArray.length; i++) {
+                    var linkUrl = decodeURIComponent(linksArray[i]);
+                    addLinkToList(linkUrl, linkCounter++);
+                }
+            }
+        });
+
+        function addLinks() {
+            // Get the input value
+            var linkInput = document.getElementById("linkInput");
+            var links = linkInput.value.split('\n');
+
+            // Iterate through the links
+            for (var i = 0; i < links.length; i++) {
+                var linkUrl = links[i].trim();
+
+                // Check if the input is not empty
+                if (linkUrl !== "") {
+                    addLinkToList(linkUrl, linkCounter++);
+                    // Append the link to the URL parameters
+                    appendToUrl(linkUrl);
+                }
+            }
+
+            // Clear the input field
+            linkInput.value = "";
+        }
+
+        function addLinkToList(linkUrl, counter) {
+            // Create a new list item
+            var listItem = document.createElement("li");
+            listItem.className = "linkItem";
+
+            // Create a link element
+            var linkElement = document.createElement("a");
+            linkElement.href = linkUrl;
+            linkElement.target = "_blank"; // Open link in a new tab/window
+
+            // Display a cleaner link without "http://", "https://", and "www."
+            var cleanLink = linkUrl.replace(/^(https?:\/\/)?(www\.)?/, '');
+            linkElement.textContent = counter.toString().padStart(2, '0') + ": " + cleanLink;
+
+            // Append the link to the list item
+            listItem.appendChild(linkElement);
+
+            // Append the list item to the link list
+            var linkList = document.getElementById("linkList");
+            linkList.appendChild(listItem);
+        }
+
+        function appendToUrl(linkUrl) {
+            // Get the current URL parameters
+            var urlParams = new URLSearchParams(window.location.search);
+
+            // Append the link to the 'links' parameter
+            var existingLinks = urlParams.get('links') || '';
+            var newLinks = existingLinks + encodeURIComponent(linkUrl) + ',';
+
+            // Update the 'links' parameter in the URL
+            urlParams.set('links', newLinks);
+            history.replaceState({}, '', window.location.pathname + '?' + urlParams.toString());
+        }
+
+        // Event listener for keystrokes
+        document.addEventListener("keydown", function(event) {
+            var key = event.key;
+
+            // Check if the pressed key is a number
+            if (!isNaN(parseInt(key))) {
+                // Add the digit to the current input
+                var currentInput = document.getElementById("redirectInput");
+                currentInput.value += key;
+
+                // Check if the input has reached two digits
+                if (currentInput.value.length === 2) {
+                    // Find the corresponding link and redirect
+                    var linkList = document.getElementById("linkList");
+                    var links = linkList.getElementsByClassName("linkItem");
+
+                    for (var i = 0; i < links.length; i++) {
+                        var link = links[i].getElementsByTagName("a")[0];
+                        var cleanLink = link.textContent.replace(/^(https?:\/\/)?(www\.)?/, '');
+                        
+                        if (currentInput.value === cleanLink.substring(0, 2)) {
+                            window.location.href = link.href;
+                            break;
+                        }
+                    }
+
+                    // Clear the input field after redirection
+                    currentInput.value = "";
+                }
+            }
+        });
+    </script>
+
+    <!-- Input field to capture two-digit numbers for redirection -->
+    <input type="text" id="redirectInput" style="display: none;">
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html split</title>
+    <style>
+        body {
+            /* font-family: 'Arial', sans-serif; */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        #editor-container {
+            display: flex;
+            flex: 1;
+        }
+
+        #editor:focus {
+            outline: none;
+        }
+
+        #editor, #preview {
+            flex: 1;
+            height: 100%;
+            padding: 10px;
+        }
+
+        #preview {
+            background-color: #f4f4f4;
+            overflow: auto;
+        }
+
+        #fullscreen-btn {
+            margin-top: 10px;
+            padding: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="editor-container">
+        <textarea id="editor" placeholder="Enter HTML, CSS, and JavaScript here"></textarea>
+        <iframe id="preview"></iframe>
+    </div>
+
+    <button id="fullscreen-btn" onclick="toggleFullscreen()">Toggle Fullscreen</button>
+
+    <script>
+        var editor = document.getElementById('editor');
+        var preview = document.getElementById('preview');
+        var fullscreenBtn = document.getElementById('fullscreen-btn');
+
+        editor.addEventListener('input', updatePreview);
+
+        function updatePreview() {
+            var content = editor.value;
+            preview.srcdoc = content;
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                preview.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+    </script>
+
+</body>
+</html>

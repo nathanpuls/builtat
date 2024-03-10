@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Display</title>
+    <style>
+        /* body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            
+        } */
+        textarea {
+            width: 100%;
+            height: 800px;
+            border: none;
+        }
+
+        textarea:focus {
+            border: none;
+            outline: none;
+        }
+        #output {
+            margin-top: 0px;
+            padding: 0px;
+        }
+        #backButton {
+            display: none; /* Initially hidden */
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            background-color: white;
+        }
+        #htmlForm {
+            height: 100%;
+        }
+       /* button {
+        display: none;
+       } */
+    </style>
+</head>
+<body>
+
+    <button id="backButton" onclick="goBack()">back</button>    
+
+    <form id="htmlForm">
+        <textarea id="htmlInput" name="htmlInput" placeholder="Enter HTML here then press ENTER" autofocus="autofocus" onkeyup="checkEnterKey(event)"></textarea>
+        <!-- <button type="button" onclick="displayHTML()">Display</button> -->
+        <button type="submit" style="display:none;"></button> <!-- Hidden submit button -->
+    </form>
+
+    <div id="output"></div>
+
+    <script>
+        document.getElementById('htmlForm').addEventListener('submit', function(event) {
+            // Prevent the form from submitting
+            event.preventDefault();
+        });
+
+        function checkEnterKey(event) {
+            if (event.key === 'Enter') {
+                displayHTML();
+            }
+        }
+
+        function displayHTML() {
+            var userInput = document.getElementById('htmlInput').value;
+            document.getElementById('output').innerHTML = userInput;
+            
+            // Hide the form elements
+            document.getElementById('htmlForm').style.display = 'none';
+            // Show the back button
+            document.getElementById('backButton').style.display = 'block';
+        }
+
+        function goBack() {
+            // Show the form elements
+            document.getElementById('htmlForm').style.display = 'block';
+            // Clear the output
+            document.getElementById('output').innerHTML = '';
+            // Hide the back button
+            document.getElementById('backButton').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
