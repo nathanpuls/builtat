@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML/CSS/JS Combiner</title>
+  <script>
+    // Get CSS and JS code from textareas
+    const cssCode = document.getElementById('cssInput').value.trim();
+    const jsCode = document.getElementById('jsInput').value.trim();
+
+    // Create style and script elements with template literals
+    const styleElement = document.createElement('style');
+    styleElement.textContent = ` ${cssCode} `;  // Using template literal for readability
+
+    const scriptElement = document.createElement('script');
+    scriptElement.textContent = ` ${jsCode} `;  // Using template literal for readability
+
+    // Insert elements before closing </head> and </body>
+    document.head.appendChild(styleElement);
+    document.body.insertBefore(scriptElement, document.body.getElementsByTagName('script')[0]);  // Insert before existing script tag
+  </script>
+      <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #output {
+            white-space: pre-line;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+  <h1>HTML/CSS/JS Combiner</h1>
+  <h3>3 files to 1</h3>
+
+  <label for="htmlInput">HTML:</label>
+  <textarea id="htmlInput"></textarea>
+
+  <label for="cssInput">CSS:</label>
+  <textarea id="cssInput"></textarea>
+
+  <label for="jsInput">JavaScript:</label>
+  <textarea id="jsInput"></textarea>
+
+  <button onclick="combineFiles()">Copy to Clipboard</button>
+
+  <script>
+        function combineFiles() {
+            const htmlCode = document.getElementById('htmlInput').value.trim();
+            const cssCode = document.getElementById('cssInput').value.trim();
+            const jsCode = document.getElementById('jsInput').value.trim();
+
+            let combinedCode = htmlCode + '\n\n<style>\n    ' + cssCode + '\n</style>\n\n<script>\n    ' + jsCode + '\n</' + 'script>';
+          
+          combinedCode = combinedCode.replace('</head>', '');
+
+
+            const textArea = document.createElement('textarea');
+            textArea.value = combinedCode;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+        }
+    </script>
+</body>
+</html>
