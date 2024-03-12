@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iris is so Great!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid columns */
+      grid-gap: 20px; /* Gap between grid items */
+      height: 100vh; /* Set grid container to fill viewport height */
+    }
+
+    .text {
+      padding: 10px;
+      border: 1px solid #ccc;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    /* Define styles for 10 fonts and colors */
+    .text.font1 { font-family: 'Courier New', monospace; color: #007bff; }
+    .text.font2 { font-family: 'Lucida Console', monospace; color: #dc3545; }
+    .text.font3 { font-family: Georgia, serif; color: #28a745; }
+    .text.font4 { font-family: Impact, sans-serif; color: #ffc107; }
+    .text.font5 { font-family: 'Trebuchet MS', sans-serif; color: #8585ad; }
+    .text.font6 { font-family: Arial, sans-serif; color: #3498db; }
+    .text.font7 { font-family: Verdana, sans-serif; color: #e84118; }
+    .text.font8 { font-family: Times New Roman, serif; color: #9b59b6; }
+    .text.font9 { font-family: Comic Sans MS, cursive; color: #f00; }
+    .text.font10 { font-family: Garamond, serif; color: #2ecc71; }
+  </style>
+</head>
+<body>
+
+  <div class="grid-container">
+    <div class="text font1">Iris is so great!</div>
+    <div class="text font2">Iris is so great!</div>
+    <div class="text font1">Iris is so great!</div>
+    <div class="text font2">Iris is so great!</div>
+    <div class="text font1">Iris is so great!</div>
+    <div class="text font2">Iris is so great!</div>
+    <div class="text font1">Iris is so great!</div>
+    <div class="text font2">Iris is so great!</div>
+    <div class="text font1">Iris is so great!</div>
+    <div class="text font2">Iris is so great!</div>
+
+    <div class="text font3">Iris is so great!</div>
+    <div class="text font4">Iris is so great!</div>
+    <div class="text font3">Iris is so great!</div>
+    <div class="text font4">Iris is so great!</div>
+    <div class="text font3">Iris is so great!</div>
+    <div class="text font4">Iris is so great!</div>
+    <div class="text font3">Iris is so great!</div>
+    <div class="text font4">Iris is so great!</div>
+    <div class="text font3">Iris is so great!</div>
+    <div class="text font4">Iris is so great!</div>
+    </div>
+</body>
+</html>
