@@ -1,22 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple JavaScript Page</title>
+  <meta charset="UTF-8">
+  <title>HTML Formatter</title>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px;
+    }
+
+    .input-area {
+      width: 500px;
+      height: 200px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      font-family: monospace;
+    }
+
+    .output-area {
+      width: 500px;
+      height: 200px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      background-color: #f5f5f5;
+      font-family: monospace;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <h1>HTML Formatter</h1>
+    <textarea id="htmlInput" class="input-area" placeholder="Enter your HTML code here..."></textarea>
+    <br>
+    <pre id="formattedOutput" class="output-area"></pre>
+    <button id="formatButton">Format HTML</button>
+  </div>
 
-    <h1>Hello, this is a simple JavaScript page!</h1>
+  <script src="https://cdn.jsdelivr.net/npm/js-beautify@1.14.0/js/beautify.min.js"></script>
+  <script>
+    const formatButton = document.getElementById('formatButton');
+    formatButton.addEventListener('click', formatHTML);
 
-    <button id="myButton">Click me!</button>
-
-    <script>
-        // Basic JavaScript code
-        document.getElementById('myButton').addEventListener('click', function () {
-            alert('Button clicked!');
-        });
-    </script>
-
+    function formatHTML() {
+      var input = document.getElementById("htmlInput").value;
+      var output = document.getElementById("formattedOutput");
+      var options = { indent_size: 2 }; // adjust indent size as desired
+      var formattedCode = js_beautify(input, options);
+      output.textContent = formattedCode;
+    }
+  </script>
 </body>
 </html>
