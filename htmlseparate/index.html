@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Separate</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px;
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>HTML Separate</h1>
+  <h3>1 file to 3 files - Extract HTML, CSS, and JS</h3>
+
+  <textarea id="code">
+   
+  </textarea>
+
+  <button onclick="copyHTML()">Copy HTML</button>
+  <button onclick="copyCSS()">Copy CSS</button>
+  <button onclick="copyJS()">Copy JS</button>
+
+  <script>
+    function copyHTML() {
+      const textarea = document.getElementById('code');
+      const htmlCode = textarea.value.replace(/<style>[\s\S]*?<\/style>/gi, '').replace(/<script>[\s\S]*?<\/script>/gi, '');
+      copyTextToClipboard(htmlCode);
+    }
+
+    function copyCSS() {
+      const textarea = document.getElementById('code');
+      const cssCode = textarea.value.match(/<style>([\s\S]*?)<\/style>/i)[1];
+      copyTextToClipboard(cssCode);
+    }
+
+    function copyJS() {
+      const textarea = document.getElementById('code');
+      const jsCode = textarea.value.match(/<script>([\s\S]*?)<\/script>/i)[1];
+      copyTextToClipboard(jsCode);
+    }
+
+    function copyTextToClipboard(text) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+    }
+  </script>
+
+</body>
+</html>
