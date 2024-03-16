@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text Compare</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  .container {
+    display: flex;
+    height: 100%;
+  }
+  .textarea-container {
+    flex: 1;
+    padding: 10px;
+  }
+  textarea {
+    width: 100%;
+    height: calc(100% - 40px); /* subtracting 40px for padding */
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  .word-count {
+    text-align: center;
+    padding: 10px 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="textarea-container">
+    <textarea id="textarea1" placeholder="Text Area 1"></textarea>
+    <div class="word-count" id="wordCount1">Word Count: 0</div>
+  </div>
+  <div class="textarea-container">
+    <textarea id="textarea2" placeholder="Text Area 2"></textarea>
+    <div class="word-count" id="wordCount2">Word Count: 0</div>
+  </div>
+</div>
+
+<script>
+  // Function to count words in textarea
+  function countWords(textareaId, wordCountId) {
+    const textarea = document.getElementById(textareaId);
+    const wordCountElement = document.getElementById(wordCountId);
+    const text = textarea.value.trim();
+    const words = text.split(/\s+/).filter(word => word !== '');
+    const wordCount = words.length;
+    wordCountElement.textContent = 'Word Count: ' + wordCount;
+  }
+
+  // Event listeners to update word count on input
+  document.getElementById('textarea1').addEventListener('input', function() {
+    countWords('textarea1', 'wordCount1');
+  });
+
+  document.getElementById('textarea2').addEventListener('input', function() {
+    countWords('textarea2', 'wordCount2');
+  });
+</script>
+
+</body>
+</html>
