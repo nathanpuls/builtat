@@ -2,6 +2,9 @@ function param(name) {
   return (new URLSearchParams(window.location.search)).get(name);
 }
 
+// var id = param('id'); console.log(id);
+
+
 function copy(text) {
     // Create a temporary input element
     var tempInput = document.createElement("input");
@@ -30,3 +33,9 @@ function notify(notice) {
     notification.style.display = "none";
   }, 2000); // Hide the notification after 2 seconds
 }
+
+function cl(...args) {
+  console.log(...args);
+}
+
+// cl('This is a shorter console.log');
