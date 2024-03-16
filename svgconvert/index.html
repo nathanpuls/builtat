@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+    #svgInput, #convertedSvg {
+      width: 100%;
+      max-width: 600px;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+  </style>
+  <title>SVG Converter</title>
+</head>
+<body>
+  <div>
+    <textarea id="svgInput" placeholder="Paste your SVG code here"></textarea>
+    <button onclick="convertSvg()">Convert SVG</button>
+    <textarea id="convertedSvg" placeholder="Converted SVG code will appear here" readonly></textarea>
+  </div>
+
+  <script>
+    function convertSvg() {
+      const inputSvg = document.getElementById('svgInput').value;
+      const convertedSvg = convertToJavaScriptString(inputSvg);
+      document.getElementById('convertedSvg').value = convertedSvg;
+    }
+
+    function convertToJavaScriptString(svgCode) {
+      // Escape single quotes within the SVG code
+      const escapedSvg = svgCode.replace(/'/g, "\\'");
+
+      // Construct the JavaScript string
+      const jsString = `'${escapedSvg}'`;
+
+      return jsString;
+    }
+  </script>
+</body>
+</html>
