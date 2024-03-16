@@ -21,3 +21,12 @@ function copy(text) {
     // Remove the temporary input element
     document.body.removeChild(tempInput);
 }
+
+function notify(notice) {
+  const notification = document.getElementById("notification");
+  notification.style.display = "block";
+  notification.textContent = notice;
+  setTimeout(() => {
+    notification.style.display = "none";
+  }, 2000); // Hide the notification after 2 seconds
+}
