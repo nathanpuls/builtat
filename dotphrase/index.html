@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dotphrase</title>
+<!-- <link rel="stylesheet" href="https://built.at/cdn/opensans.css"> -->
+<style>
+
+* {
+    font-family: monospace;
+}    
+body {
+        font-family: Arial, sans-serif;
+        margin-left: 10px;
+    }
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 20px;
+    }
+    textarea {
+        width: 100%;
+        height: 700px;
+        resize: none;
+        padding: 10px;
+        border: #ccc;
+    }
+    textarea:focus {
+        outline: none;
+    }
+    #output {
+        white-space: pre-wrap;
+    }
+    #clearCombinedBtn {
+       
+        margin-right: 100px;
+    }
+    #toggleButton {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        padding: 5px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+    #copyBtn {
+        background-color: black;
+        color: white;
+    }
+    h3 {
+        margin: 0;
+    }
+    button {
+        border-radius: 8px;
+        border: none;
+        padding: 10px;
+    }
+    #edit {
+        margin-right: 100px;
+    }
+    #shortcuts {
+        display: none;
+    }
+    a {
+        color: black;
+    }
+
+</style>
+</head>
+<body>
+    <h3>Dotphrase</h3>
+    <button id="toggleButton" onclick="toggleTextarea()">Toggle Shortcuts</button>
+
+<div class="container">
+    <textarea id="combined" oninput="replaceText()" placeholder="Type your text here. Shortcuts will be replaced as you type and displayed here."></textarea>
+    <textarea disabled id="shortcuts" oninput="replaceText()" placeholder="Enter shortcuts here (.shortcut, replacedtext)" ></textarea>
+</div>
+<a href="https://gist.github.com/nathanpuls/ff136e769242b6061fa8d739fc32e1fe/edit" id="edit">Edit Shortcuts</a>
+<button id='clearCombinedBtn' onclick="clearCombined()">Clear text</button>
+<button id='copyBtn' onclick="copyText()">Copy Text</button>
+
+
+
+<script>
+
+function clearCombined() {
+    document.getElementById('combined').value = '';
+    localStorage.removeItem('combined'); // Clear data from local storage
+
+}
+
+// Retrieve data from local storage
+document.getElementById('combined').value = localStorage.getItem('combined') || '';
+
+var gistId = 'ff136e769242b6061fa8d739fc32e1fe';
+var fileName = 'dotphrase.txt';
+var cacheBuster = Math.random().toString(36).slice(2); // Generate a random string as cache buster
+var rawUrl = `https://gist.githubusercontent.com/nathanpuls/${gistId}/raw/${fileName}?v=${cacheBuster}`;
+
+// var rawUrl = `https://gist.githubusercontent.com/nathanpuls/${gistId}/raw/${fileName}`;
+
+// Fetch contents of file
+fetch(rawUrl)
+    .then(response => response.text())
+    .then(text => {
+        document.getElementById('shortcuts').value = text;
+        replaceText(); // Call replaceText function after setting the value
+    });
+
+function replaceText() {
+    const shortcutsTextarea = document.getElementById('shortcuts');
+    const combinedTextarea = document.getElementById('combined');
+    
+    const shortcuts = parseShortcuts(shortcutsTextarea.value);
+    let combinedText = combinedTextarea.value;
+    
+    for (const [shortcut, replacement] of Object.entries(shortcuts)) {
+        combinedText = combinedText.split(shortcut).join(replacement);
+    }
+    
+    combinedTextarea.value = combinedText;
+    
+    // Save data to local storage
+    localStorage.setItem('combined', combinedTextarea.value);
+}
+
+function parseShortcuts(shortcutsText) {
+    const shortcuts = {};
+    const lines = shortcutsText.split('\n');
+    
+    lines.forEach(line => {
+        const parts = line.split(',');
+        const shortcut = parts[0].trim();
+        const replacement = parts.slice(1).join(',').trim();
+        if (shortcut && replacement) {
+            shortcuts[shortcut] = replacement;
+        }
+    });
+    
+    return shortcuts;
+}
+function toggleTextarea() {
+        var textarea = document.getElementById('shortcuts');
+        textarea.style.display = textarea.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+
+</body>
+</html>

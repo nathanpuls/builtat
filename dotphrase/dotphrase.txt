@@ -1,0 +1,6 @@
+.h, hey
+.p, 123
+.f, fun
+.ad, 118 E 27th St Unit A Houston TX 77008
+.at, another test
+/yo, yoman
