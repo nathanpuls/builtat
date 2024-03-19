@@ -1,0 +1,3 @@
+g, https://g.co
+y, https://yahoo.com
+google, https://google.com

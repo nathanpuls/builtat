@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect Page</title>
+</head>
+<body>
+    <script>
+        // Function to read and process the content of the .txt file
+        function processFile(file) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => {
+                    // Split the content of the file by line
+                    const lines = data.trim().split('\n');
+                    // Create an object to store slugs and URLs
+                    const mappings = {};
+                    // Iterate through each line and populate the mappings object
+                    lines.forEach(line => {
+                        const [slug, url] = line.split(',').map(item => item.trim());
+                        mappings[slug] = url;
+                    });
+
+                    // Parse the URL to get the slug parameter value
+                    const url = new URL(window.location.href);
+                    const slug = url.searchParams.get('slug');
+                    console.log("Slug:", slug); // Debugging statement
+
+                    // If the slug is found in the mappings object, redirect to the corresponding URL
+                    if (slug && mappings.hasOwnProperty(slug)) {
+                        window.location.replace(mappings[slug]);
+                    } else {
+                        console.error("Slug not found or invalid:", slug);
+                    }
+                })
+                .catch(error => console.error('Error reading the file:', error));
+        }
+
+        // Call the function with the path to your .txt file
+        var gist = 'https://gist.githubusercontent.com/nathanpuls//raw/935505cfffc76bc9e1ef62efc4559659e94e4121/redirect.txt';
+
+        var gistId = '096a17825d0a342f7ddfa47464fe160c';
+var fileName = 'redirect.txt';
+var cacheBuster = Math.random().toString(36).slice(2); // Generate a random string as cache buster
+var rawUrl = `https://gist.githubusercontent.com/nathanpuls/${gistId}/raw/${fileName}?v=${cacheBuster}`;
+
+        processFile(rawUrl);
+    </script>
+</body>
+</html>
