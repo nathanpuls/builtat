@@ -3,7 +3,7 @@ const contacts = {
   Ambulance: "911 (2nd step: Call Security at 5073 & report info)",
   "ATP (Nursing station)": "5300",
   "Bellaire office": "5615",
-  "Brain Stimulation": "5118",
+  "Brain Stimulation": "5328",
   "Budget, Cashier & Accounting": "5037",
   "Building 6 Welcome Desk": "5266",
   "Care Coordination Center": "5400",
