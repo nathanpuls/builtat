@@ -125,7 +125,8 @@ input#plyr-volume-2653 {
   position: relative;
   display: inline-block;
   width: 60px;
-  height: 34px;
+  height: 24px;
+  margin-left: 15px;
 }
 
 .toggle input {
@@ -140,8 +141,9 @@ input#plyr-volume-2653 {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgb(0, 0, 0); /*bg before*/
+  background-color: #ffffff; /*bg before*/
   border-radius: 34px;
+  border: solid 1px black;
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -151,7 +153,8 @@ input#plyr-volume-2653 {
 }
 
 .toggle input:checked + label:before {
-  background-color: rgb(0, 0, 0); /*circle after*/
+  background-color: orange; /*circle after*/
+  /* border: 1px solid black; */
 }
 
 .toggle label:before {
@@ -160,9 +163,9 @@ input#plyr-volume-2653 {
   top: 50%;
   left: 30%; /* Adjust the left position to start from the left side */
   transform: translate(-50%, -50%);
-  width: 22px;
-  height: 22px;
-  background-color: rgb(255, 255, 255); /*circle before*/
+  width: 18px;
+  height: 18px;
+  background-color: rgb(0, 0, 0); /*circle before*/
   border-radius: 50%;
   transition: transform 0.3s;
 }
