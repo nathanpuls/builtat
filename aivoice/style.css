@@ -1,8 +1,6 @@
 /* @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap'); */
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300,900&display=swap");
 
 :root {
   --main-color: #000000; /*olympic blue: https://louisem.com/417898/blue-hex-codes */
@@ -10,50 +8,173 @@
 }
 
 body {
-  font-family: 'Manrope', sans-serif;
-
+  font-family: "Manrope", sans-serif;
 }
 
-.fixed-top {
+.ainav {
+  overflow: hidden;
+  background-color: #ffffff;
   position: fixed;
   top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1030;
+  width: 100%;
   height: 75px;
   display: flex;
-  align-items: center;
   justify-content: center;
-}
-
-.navbar {
-  --bs-navbar-padding-y: 0;
+  align-items: center;
   text-align: center;
-  align-items: center;
+  z-index: 1;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 
-
-.navbar-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+body.dark-mode .ainav {
   
+    border-bottom: 1px solid #fff;
+ 
 }
 
-.navbar-toggler {
-  box-shadow: none;
-  outline: none;
-  border: none;
+body.dark-mode .ainav .brand-img {
+  content: url("mic-white.png");
 }
-.navbar-custom {
-  position: fixed;
+
+.aibrand {
+  display: flex;
+  align-items: center;
+}
+
+
+
+.brand-link {
+  text-decoration: none;
+}
+
+.brand-span {
+  font-weight: 900;
+  font-family: monospace;
+  color: black;
+}
+
+.brand-img {
+  margin-bottom: 5px;
+}
+
+body {
+  background-color: #fff;
+  color: #000;
+}
+body.dark-mode, html.dark-mode {
+  background-color: #000;
+  color: #fff;
+
+  a {
+    color: white;
+  }
+
+  p {
+    color: white;
+  }
+
+  .card-title {
+    color: white;
+  }
+  .list-group {
+    --bs-list-group-bg: transparent;
+  }
+
+  .card {
+    --bs-card-border-color: transparent;
+  }
+
+  .ainav {
+    background-color: #000;
+  }
+
+  .brand-span {
+    color: white;
+  }
+
+  button.plyr__controls__item.plyr__control {
+    color: white;
+}
+
+.plyr__controls__item.plyr__time--current.plyr__time {
+  color: white;
+}
+
+.plyr__controls__item.plyr__time--duration.plyr__time {
+  color: white;
+}
+
+.plyr__controls__item.plyr__volume {
+  color: white;
+}
+
+input#plyr-volume-2653 {
+  color: white;
+}
+
+}
+
+#plyr-volume-5741 {
+  color: rebeccapurple;
+}
+
+
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle label {
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1030;
-  
+  bottom: 0;
+  background-color: rgb(0, 0, 0); /*bg before*/
+  border-radius: 34px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
+
+.toggle input:checked + label {
+  background-color: rgb(255, 255, 255); /*bg after*/
+}
+
+.toggle input:checked + label:before {
+  background-color: rgb(0, 0, 0); /*circle after*/
+}
+
+.toggle label:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 30%; /* Adjust the left position to start from the left side */
+  transform: translate(-50%, -50%);
+  width: 22px;
+  height: 22px;
+  background-color: rgb(255, 255, 255); /*circle before*/
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.toggle input:checked + label:before {
+  transform: translate(-50%, -50%) translateX(25px);
+}
+
+.fa {
+  color: #848484; /* Replace with the desired color value */
+}
+
 .content-wrapper {
   padding-top: 0px;
 }
@@ -77,10 +198,8 @@ a[href^="#"] {
 
 .nav-item {
   font-weight: bold;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   padding: 0;
-
-
 }
 
 .nav-item {
@@ -104,12 +223,11 @@ p {
 }
 #demos {
   font-size: 1rem;
-  
 }
 
-a {
+/* a {
   color: var(--main-color) !important; 
-}
+} */
 
 h4 {
   padding-top: 10px;
@@ -117,16 +235,10 @@ h4 {
   align-items: center;
   text-align: center;
   font-size: 1.5rem;
-  color: rgb(0, 0, 0);
+  /* color: rgb(0, 0, 0); */
   /* text-transform: uppercase; */
-  font-weight: 500;
-  font-family: 'Manrope', sans-serif;
-
-
-}
-
-.about-intro {
-  /* font-weight: bold; */
+  font-weight: 900;
+  font-family: "Manrope", sans-serif;
 }
 
 .card {
@@ -143,42 +255,43 @@ h4 {
   max-height: 315px;
   margin: 0 auto;
 }
-  .video-wrap iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      max-height: 315px;
-      padding-left: 10px;
-      padding-right: 10px;
-  }
+.video-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 315px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
-  #scroll-up {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 99;
-    font-size: 18px;
-    border: none;
-    outline: none;
-    background-color:var(--alt-color);
-    color: #fff;
-    cursor: pointer;
-    padding: 0px;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+#scroll-up {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: var(--alt-color);
+  color: #fff;
+  cursor: pointer;
+  padding: 0px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .container {
-    padding-bottom: 40px;
-  }
+.container {
+  padding-bottom: 40px;
+}
 
-  #container-nav {
-    padding-bottom: inherit;
-  }
+#container-nav {
+  padding-bottom: inherit;
+}
+
