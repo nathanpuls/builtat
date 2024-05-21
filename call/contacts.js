@@ -4,6 +4,7 @@ const contacts = {
   "ATP (Nursing station)": "5300",
   "Bellaire office": "5615",
   "Brain Stimulation": "5328",
+  "Bridge/Residential": "5782",
   "Budget, Cashier & Accounting": "5037",
   "Building 6 Welcome Desk": "5266",
   "Care Coordination Center": "5400",
