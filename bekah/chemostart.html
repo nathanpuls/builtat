@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chemotherapy Monitoring Schedule</title>
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css.css">
     <style>
         * {
             font-family: 'Poppins', sans-serif;
@@ -80,13 +81,17 @@
 
     </style>
 </head>
+
 <body>
+    
     <h1>Chemotherapy Monitoring Schedule</h1>
     <label for="startDate">Choose a start date for chemotherapy:</label>
     <input type="date" id="startDate" placeholder="MM/DD/YYYY">
     <button id="generateButton" onclick="generateSchedule()">Generate Schedule</button>
     <div class="output" id="output"></div>
     <button id="copyButton" class="copy-button" onclick="copyToClipboard()">Copy Text</button>
+
+    <a id="topLeftLink" href="#"> 
 
     <script>
         function generateSchedule() {
@@ -143,5 +148,7 @@
             }, 2000);
         }
     </script>
+    <script src="js.js"></script>
+
 </body>
 </html>

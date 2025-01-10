@@ -1,0 +1,9 @@
+#topLeftLink {
+    position: fixed;
+    top: 10px; /* Distance from the top */
+    left: 10px; /* Distance from the left */
+    font-size: 18px;
+    color: black; /* Set text color to black */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Optional: make the text bold */
+}
