@@ -12,6 +12,12 @@ brand {
   font-size: 'Outfit', sans-serif;
 }
 
+#tag {
+  text-align: center;
+  font-size: .7rem;
+  
+}
+
 main {
   display: flex;
   flex-direction: row;
